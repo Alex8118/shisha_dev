@@ -32,9 +32,9 @@ public class MyList extends Auditable {
     @Column(name = "order_position")
     private Integer orderPosition;
 
-    @Column(name = "upload_file", nullable = false)
+    @Column(name = "file", nullable = false)
     @Lob
-    private byte[] uploadFile;
+    private byte[] file;
 
 
 }
