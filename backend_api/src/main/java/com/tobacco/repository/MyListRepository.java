@@ -1,12 +1,12 @@
 package com.tobacco.repository;
 
-import com.tobacco.models.MyList;
+import com.tobacco.models.MyListEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface MyListRepository extends JpaRepository<MyList, Long> {
+public interface MyListRepository extends JpaRepository<MyListEntity, Long> {
 
-    MyList save(MyList myList);
+    MyListEntity save(MyListEntity myListEntity);
 
 }

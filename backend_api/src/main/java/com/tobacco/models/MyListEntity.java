@@ -14,7 +14,7 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "MyList")
-public class MyList extends Auditable {
+public class MyListEntity extends Auditable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -27,14 +27,14 @@ public class MyList extends Auditable {
     private Integer tobaccoId;
 
     @Column(name = "status", nullable = false)
-    private MyListStatus status;
+    private MyListStatusEnum status = MyListStatusEnum.IN_PROGRESS;
 
     @Column(name = "order_position")
     private Integer orderPosition;
 
-    @Column(name = "file", nullable = false)
+    @Column(name = "upload_file", nullable = false)
     @Lob
-    private byte[] file;
+    private byte[] uploadFile;
 
 
 }
