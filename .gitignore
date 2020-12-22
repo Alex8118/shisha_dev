@@ -126,7 +126,4 @@ dmypy.json
 *.pem
 
 # Pictures
-*.jpg
-*.gif
-*.png
-*.webp
+python/табаки
