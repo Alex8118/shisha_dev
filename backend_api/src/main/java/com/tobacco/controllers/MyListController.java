@@ -32,7 +32,7 @@ public class MyListController {
     @Transactional(readOnly = true)
     @GetMapping ("/my-list")
     public Page<MyListDto> find(@RequestHeader("authorization") String jwtToken,
-                                   @PageableDefault(size = 10, page = 0) Pageable pageable
+                                @PageableDefault(size = 10, page = 0) Pageable pageable
     ) {
         var  userId = 1; //метод получения userId из токена
         return myListService.findByUserId(userId, pageable);
