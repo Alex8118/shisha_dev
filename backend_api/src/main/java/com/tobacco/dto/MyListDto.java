@@ -1,7 +1,10 @@
 package com.tobacco.dto;
 
 import com.tobacco.models.MyListStatusEnum;
+import com.tobacco.models.TobaccoEntity;
 import lombok.*;
+
+import javax.validation.constraints.NotNull;
 
 @Setter
 @Getter
@@ -11,7 +14,7 @@ public class MyListDto {
 
     private Integer id;
 
-    private Integer tobaccoId;
+    private TobaccoDto tobaccoEntity;
 
     private MyListStatusEnum status;
 

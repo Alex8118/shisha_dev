@@ -9,22 +9,22 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 @Getter
 @Setter
 @Accessors(chain = true)
-@Entity
 @EntityListeners(AuditingEntityListener.class)
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "MyList")
+@Entity
+@Table(name = "my_list_table")
 public class MyListEntity extends Auditable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column(name = "user_id")//, nullable = false)
+    @Column(name = "user_id")
     private Integer userId;
 
-    @Column(name = "tobacco_id")
-    private Integer tobaccoId;
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    private TobaccoEntity tobaccoEntity;
 
     @Column(name = "status", nullable = false)
     private MyListStatusEnum status = MyListStatusEnum.IN_PROGRESS;
@@ -35,6 +35,5 @@ public class MyListEntity extends Auditable {
     @Column(name = "upload_file", nullable = false)
     @Lob
     private byte[] uploadFile;
-
 
 }
