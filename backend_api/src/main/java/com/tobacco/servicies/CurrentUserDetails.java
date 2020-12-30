@@ -1,25 +1,53 @@
 package com.tobacco.servicies;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.DeserializationFeature;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.mashape.unirest.http.HttpResponse;
 import com.mashape.unirest.http.Unirest;
 import com.mashape.unirest.http.exceptions.UnirestException;
-import org.springframework.beans.factory.annotation.Value;
+import com.tobacco.dto.AuthUserEntityDto;
+import org.json.JSONException;
+import org.json.JSONObject;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.stereotype.Service;
+import java.io.IOException;
 
-
+@Service
 public class CurrentUserDetails {
 
-    public static HttpResponse<String> getUserSecurity() throws UnirestException {
+    public static AuthUserEntityDto getUserDetails(String jwtToken) throws UnirestException, IOException {
 
-        HttpResponse<String> response = Unirest.get("https://shishaproject.eu.auth0.com/api/v2/users")
-                .header("authorization", "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6InJnNFpqdFJFX19RR1YzLUJ6dkdFaCJ9.eyJpc3MiOiJodHRwczovL3NoaXNoYXByb2plY3QuZXUuYXV0aDAuY29tLyIsInN1YiI6Imdvb2dsZS1vYXV0aDJ8MTA1NTExNDg2OTcxNzQyMjMxNzQ4IiwiYXVkIjpbInNoaXNoYXByb2plY3RfYmFja2VuZCIsImh0dHBzOi8vc2hpc2hhcHJvamVjdC5ldS5hdXRoMC5jb20vdXNlcmluZm8iXSwiaWF0IjoxNjA4Mzk4MzQ4LCJleHAiOjE2MDg0ODQ3NDgsImF6cCI6ImltMmZtaTY4cGFJRENXQkUwMzU5SThrU3Mzd2pJYW12Iiwic2NvcGUiOiJvcGVuaWQgcHJvZmlsZSBlbWFpbCIsInBlcm1pc3Npb25zIjpbXX0.SDdZuYM0YKhGYU_SPCzkCvaU2thvjxCGYOA7A6qMc-1Nceg3V8GWtLnWFvKOTnc_IZJ_NZuTU0Cxs6Gz4rsIZVwuMtEEJ689-8Euy_lX1azIqPfGj_gf0CDrv4EP6LlZt9rIRVDfUqgjvA7Nnr1rPz7z7RBr8F1Qb2bmPTk26yKidqSfXqrAF1YwXDZdw9TP_5StKeOIFD4gXEYNRVe_sKPw-U1Hg1P0slTxRzGTpAQKw5I6fsS1ZtQSikuFjq38fh9kEMHgKmDRatmqBG7b0RPRHdo7gRsCKNHEr-vE2AP_3ZRhjcV4x0gdK9TllYihXOdVFFVMZXDmdZj-RIEF0Q")
+        HttpResponse<String> response = Unirest.get("https://shishaproject.eu.auth0.com/userinfo/")
+                .header("authorization", jwtToken)
                 .asString();
+        ObjectMapper objectMapper = new ObjectMapper();
+        objectMapper = objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+        AuthUserEntityDto authUserEntityDto = objectMapper.readValue(response.getRawBody(), AuthUserEntityDto.class);
 
-        return  response;
+        return authUserEntityDto;
     }
 
-    private static Authentication getAuthentication() {
-        return SecurityContextHolder.getContext().getAuthentication();
+    public static Double getUserIdFromToken(String jwtToken) throws UnirestException, IOException {
+
+        var sub = getUserDetails(jwtToken).getSub().split("\\|");
+        String partOfSub = (sub[1]);
+        return Double.parseDouble(partOfSub);
     }
+
+    public static String getUserId() throws JSONException, JsonProcessingException {
+        ObjectMapper mapper = new ObjectMapper();
+        Authentication context =  SecurityContextHolder.getContext().getAuthentication();
+        String jsonString = mapper.writeValueAsString(context);
+        JSONObject obj = new JSONObject(jsonString);
+        String subUserId = obj.getJSONObject("principal").getJSONObject("claims").getString("sub");
+        String[] userIdFull = subUserId.split("\\|");
+        String userId = (userIdFull[1]);
+
+        return userId;
+    }
+
 }
+
+

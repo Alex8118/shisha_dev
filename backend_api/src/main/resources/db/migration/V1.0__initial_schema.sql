@@ -25,7 +25,7 @@ CREATE TABLE IF NOT EXISTS tobacco
 CREATE TABLE IF NOT EXISTS my_list_table
 (
     id                  int          NOT NULL AUTO_INCREMENT,
-    user_id             int,
+    user_id             varchar(255),
     tobacco_entity_id   int,
     status              int NOT NULL,
     order_position      int,

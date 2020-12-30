@@ -11,5 +11,5 @@ public interface MyListRepository extends JpaRepository<MyListEntity, Integer> {
 
     MyListEntity save(MyListEntity myListEntity);
 
-    Page<MyListEntity> findByUserId(int userId, Pageable pageable);
+    Page<MyListEntity> findByUserId(String userId, Pageable pageable);
 }

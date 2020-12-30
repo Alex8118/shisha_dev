@@ -21,7 +21,7 @@ public class MyListEntity extends Auditable {
     private Integer id;
 
     @Column(name = "user_id")
-    private Integer userId;
+    private String userId;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     private TobaccoEntity tobaccoEntity;
