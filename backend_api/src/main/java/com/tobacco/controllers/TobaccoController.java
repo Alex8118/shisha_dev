@@ -1,27 +1,37 @@
 package com.tobacco.controllers;
 
 import com.tobacco.common.Constants;
-import com.tobacco.dto.MyListDto;
 import com.tobacco.dto.TobaccoDto;
-import com.tobacco.servicies.MyListService;
+import com.tobacco.mappers.TobaccoMapper;
+import com.tobacco.models.TobaccoEntity;
 import com.tobacco.servicies.TobaccoService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.client.RestTemplate;
-import org.springframework.web.multipart.MultipartFile;
 
 @RestController
 @RequestMapping(Constants.API_PATH + "/request")
 public class TobaccoController {
 
     @Autowired
-    private RestTemplate restTemplate;
+    private TobaccoService tobaccoService;
 
     @Autowired
-    private TobaccoService tobaccoService;
+    private TobaccoMapper tobaccoMapper;
 
     @PostMapping("/tobacco")
     TobaccoDto create(@RequestBody TobaccoDto tobaccoDto) throws Exception {
         return tobaccoService.createTobacco(tobaccoDto);
     }
+
+    @Transactional(readOnly = true)
+    @GetMapping ("/tobacco-list")
+    public Page<TobaccoDto> findAll(@PageableDefault(size = 10, page = 0) Pageable pageable){
+        return tobaccoService.findAll(pageable)
+                .map(tobacco -> tobaccoMapper.fromTobaccoEntity(tobacco));
+    }
+
 }
