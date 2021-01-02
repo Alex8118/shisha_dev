@@ -13,6 +13,7 @@ CREATE TABLE IF NOT EXISTS tobacco
     smokiness_estimate       DOUBLE,
     package_estimate         DOUBLE,
     comfort_in_work_estimate DOUBLE,
+    total_estimate           DOUBLE,
     tobacco_file             longblob,
     created_date             datetime     DEFAULT NULL,
     last_modified_date       datetime     DEFAULT NULL,
@@ -37,6 +38,22 @@ CREATE TABLE IF NOT EXISTS my_list_table
   AUTO_INCREMENT = 1
   DEFAULT CHARSET = utf8;
 
+CREATE TABLE IF NOT EXISTS tobacco_rating
+(
+    id                       int          NOT NULL AUTO_INCREMENT,
+    user_id                  varchar(255),
+    tobacco_id               int,
+    taste_estimate           DOUBLE,
+    dur_of_smok_estimate     DOUBLE,
+    smokiness_estimate       DOUBLE,
+    package_estimate         DOUBLE,
+    comfort_in_work_estimate DOUBLE,
+    created_date             datetime DEFAULT NULL,
+    last_modified_date       datetime DEFAULT NULL,
+    PRIMARY KEY (id)
+) ENGINE = InnoDB
+  AUTO_INCREMENT = 1
+  DEFAULT CHARSET = utf8;
 
 
 

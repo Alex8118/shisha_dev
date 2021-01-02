@@ -35,6 +35,8 @@ public class TobaccoDto {
 
     private Double comfortInWorkEstimate;
 
+    private Double totalEstimate;
+
     private byte[] picture;
 
 }

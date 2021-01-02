@@ -59,6 +59,9 @@ public class TobaccoEntity extends Auditable {
     @Column(name = "comfort_in_work_estimate")
     private Double comfortInWorkEstimate;
 
+    @Column(name = "total_estimate")
+    private Double totalEstimate;
+
     @Column(name = "tobacco_file")
     @Lob
     private byte[] picture;

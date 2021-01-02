@@ -3,7 +3,6 @@ package com.tobacco.controllers;
 import com.tobacco.common.Constants;
 import com.tobacco.dto.TobaccoDto;
 import com.tobacco.mappers.TobaccoMapper;
-import com.tobacco.models.TobaccoEntity;
 import com.tobacco.servicies.TobaccoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
