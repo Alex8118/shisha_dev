@@ -2,7 +2,6 @@ package com.tobacco.controllers;
 
 import com.tobacco.common.Constants;
 import com.tobacco.dto.TobaccoDto;
-import com.tobacco.mappers.TobaccoMapper;
 import com.tobacco.servicies.TobaccoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -18,9 +17,6 @@ public class TobaccoController {
     @Autowired
     private TobaccoService tobaccoService;
 
-    @Autowired
-    private TobaccoMapper tobaccoMapper;
-
     @PostMapping("/tobacco")
     TobaccoDto create(@RequestBody TobaccoDto tobaccoDto) throws Exception {
         return tobaccoService.createTobacco(tobaccoDto);
@@ -29,8 +25,7 @@ public class TobaccoController {
     @Transactional(readOnly = true)
     @GetMapping ("/tobacco-list")
     public Page<TobaccoDto> findAll(@PageableDefault(size = 10, page = 0) Pageable pageable){
-        return tobaccoService.findAll(pageable)
-                .map(tobacco -> tobaccoMapper.fromTobaccoEntity(tobacco));
+        return tobaccoService.findAll(pageable);
     }
 
 }
