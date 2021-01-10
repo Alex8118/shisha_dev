@@ -130,3 +130,14 @@ dmypy.json
 python/табаки
 python/Flowers_Tensorflow
 python/flower_photos
+*.jpg
+*.png
+*.gif
+*.webp
+*.jpeg
+*.DS_Store
+python/archive.zip
+python/flowers/dandelion/flickr.py
+python/flowers/dandelion/run_me.py
+python/flowers/flowers/dandelion/flickr.py
+python/flowers/flowers/dandelion/run_me.py
