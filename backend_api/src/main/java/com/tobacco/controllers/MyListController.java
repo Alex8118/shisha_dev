@@ -1,6 +1,5 @@
 package com.tobacco.controllers;
 
-import com.mashape.unirest.http.exceptions.UnirestException;
 import com.tobacco.common.Constants;
 import com.tobacco.dto.MyListDto;
 import com.tobacco.servicies.MyListService;
@@ -11,9 +10,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.client.RestTemplate;
 import org.springframework.web.multipart.MultipartFile;
-
 import java.io.IOException;
 
 @RestController

@@ -41,9 +41,9 @@ public class CurrentUserDetails {
         Authentication context =  SecurityContextHolder.getContext().getAuthentication();
         String jsonString = mapper.writeValueAsString(context);
         JSONObject obj = new JSONObject(jsonString);
-        String subUserId = obj.getJSONObject("principal").getJSONObject("claims").getString("sub");
-        String[] userIdFull = subUserId.split("\\|");
-        String userId = (userIdFull[1]);
+        String subFullString = obj.getJSONObject("principal").getJSONObject("claims").getString("sub");
+        String[] subSeparate = subFullString.split("\\|");
+        String userId = (subSeparate[1]);
 
         return userId;
     }

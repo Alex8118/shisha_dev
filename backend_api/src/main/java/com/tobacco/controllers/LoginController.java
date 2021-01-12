@@ -4,7 +4,6 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.tobacco.common.Constants;
 import com.tobacco.servicies.CurrentUserDetails;
 import org.json.JSONException;
-import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -19,4 +18,5 @@ public class LoginController {
     public String publicEndpoint() throws JSONException, JsonProcessingException {
         return CurrentUserDetails.getUserId();
     }
+
 }

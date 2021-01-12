@@ -36,7 +36,7 @@ public class MyListService {
     }
 
     public Page<MyListDto> findByUserId (Pageable pageable) throws IOException, JSONException {
-        var userId = CurrentUserDetails.getUserId();
+        String userId = CurrentUserDetails.getUserId();
         return myListRepository.findByUserId(userId, pageable)
                 .map(m -> myListMapper.fromMyListEntity(m));
     }
