@@ -14,7 +14,7 @@ CREATE TABLE IF NOT EXISTS tobacco
     package_estimate         DOUBLE,
     comfort_in_work_estimate DOUBLE,
     total_estimate           DOUBLE,
-    tobacco_file             longblob,
+    tobacco_url              varchar(255),
     created_date             datetime     DEFAULT NULL,
     last_modified_date       datetime     DEFAULT NULL,
     PRIMARY KEY (id)
@@ -30,7 +30,7 @@ CREATE TABLE IF NOT EXISTS my_list_table
     tobacco_entity_id   int,
     status              int NOT NULL,
     order_position      int,
-    upload_file         longblob,
+    picture_url         varchar(255),
     created_date        datetime DEFAULT NULL,
     last_modified_date  datetime DEFAULT NULL,
     PRIMARY KEY (id)

@@ -23,7 +23,7 @@ public class MyListEntity extends Auditable {
     @Column(name = "user_id")
     private String userId;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @ManyToOne(fetch = FetchType.LAZY)
     private TobaccoEntity tobaccoEntity;
 
     @Column(name = "status", nullable = false)
@@ -32,8 +32,7 @@ public class MyListEntity extends Auditable {
     @Column(name = "order_position")
     private Integer orderPosition;
 
-    @Column(name = "upload_file", nullable = false)
-    @Lob
-    private byte[] uploadFile;
+    @Column(name = "picture_url", nullable = false)
+    private String userPicture;
 
 }

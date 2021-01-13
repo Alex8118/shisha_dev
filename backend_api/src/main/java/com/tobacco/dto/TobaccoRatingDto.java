@@ -5,25 +5,15 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import javax.validation.constraints.Pattern;
+
 @Setter
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
-public class TobaccoDto {
+public class TobaccoRatingDto {
 
-    private Integer id;
-
-    private String tradeMark;
-
-    private String name;
-
-    private String taste;
-
-    private Integer weight;
-
-    private String typeOfLeaf;
-
-    private String heartResistance;
+    private Integer tobaccoId;
 
     private Double tasteEstimate;
 
@@ -34,9 +24,5 @@ public class TobaccoDto {
     private Double packageEstimate;
 
     private Double comfortInWorkEstimate;
-
-    private Double totalEstimate;
-
-    private String pictureUrl;
 
 }

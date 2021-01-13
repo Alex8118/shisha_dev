@@ -25,9 +25,13 @@ public class MyListService {
     @Autowired
     private MyListMapper myListMapper;
 
+    @Autowired
+    private SaveUploadFile saveUploadFile;
+
     public MyListDto createMyList(MultipartFile multipartImage) throws IOException, JSONException {
         MyListEntity myListEntity = new MyListEntity();
-        myListEntity.setUploadFile(multipartImage.getBytes());
+        String uploadUrl = saveUploadFile.saveUploadFile(multipartImage.getBytes());
+        myListEntity.setUserPicture(uploadUrl);
         //TODO метод метод определения табака
         myListEntity.setTobaccoEntity(tobaccoRepository.findById(1));//tobacco_id=1
         myListEntity.setUserId(CurrentUserDetails.getUserId());

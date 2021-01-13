@@ -16,33 +16,18 @@ import javax.persistence.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "tobacco")
-public class TobaccoEntity extends Auditable {
+@Table(name = "tobacco_rating")
+public class TobaccoRatingEntity extends Auditable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column(name = "trade_mark")
-    private String tradeMark;
+    @Column(name = "user_id")
+    private String userId;
 
-    @Column(name = "name")
-    private String name;
-
-    @Column(name = "taste")
-    private String taste;
-
-    @Column(name = "weight")
-    private Integer weight;
-
-    @Column(name = "type_of_leaf")
-    private String typeOfLeaf;
-
-    @Column(name = "heart_resistance")
-    private String heartResistance;
-
-    @Column(name = "country")
-    private String country;
+    @Column(name = "tobacco_id")
+    private Integer tobaccoId;
 
     @Column(name = "taste_estimate")
     private Double tasteEstimate;
@@ -58,11 +43,5 @@ public class TobaccoEntity extends Auditable {
 
     @Column(name = "comfort_in_work_estimate")
     private Double comfortInWorkEstimate;
-
-    @Column(name = "total_estimate")
-    private Double totalEstimate;
-
-    @Column(name = "tobacco_url")
-    private String pictureUrl;
 
 }
